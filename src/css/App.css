@@ -1218,7 +1218,7 @@ a.box:active {
         border-color: transparent;
         color: #b42b27; }
   .button.is-small {
-    border-radius: 0.25rempx;
+    border-radius: 0.25rem;
     font-size: 0.75rem; }
   .button.is-normal {
     font-size: 1rem; }
@@ -1268,7 +1268,7 @@ a.box:active {
   .buttons:not(:last-child) {
     margin-bottom: 1rem; }
   .buttons.are-small .button:not(.is-normal):not(.is-medium):not(.is-large) {
-    border-radius: 0.25rempx;
+    border-radius: 0.25rem;
     font-size: 0.75rem; }
   .buttons.are-medium .button:not(.is-small):not(.is-normal):not(.is-large) {
     font-size: 1.25rem; }
@@ -2251,7 +2251,7 @@ a.tag:hover {
     .is-danger.input:focus, .is-danger.textarea:focus, .is-danger.is-focused.input, .is-danger.is-focused.textarea, .is-danger.input:active, .is-danger.textarea:active, .is-danger.is-active.input, .is-danger.is-active.textarea {
       box-shadow: 0 0 0 0.125em rgba(217, 83, 79, 0.25); }
   .is-small.input, .is-small.textarea {
-    border-radius: 0.25rempx;
+    border-radius: 0.25rem;
     font-size: 0.75rem; }
   .is-medium.input, .is-medium.textarea {
     font-size: 1.25rem; }
@@ -2425,7 +2425,7 @@ a.tag:hover {
     .select.is-danger select:focus, .select.is-danger select.is-focused, .select.is-danger select:active, .select.is-danger select.is-active {
       box-shadow: 0 0 0 0.125em rgba(217, 83, 79, 0.25); }
   .select.is-small {
-    border-radius: 0.25rempx;
+    border-radius: 0.25rem;
     font-size: 0.75rem; }
   .select.is-medium {
     font-size: 1.25rem; }
@@ -3262,7 +3262,7 @@ button.dropdown-item {
 .menu-list {
   line-height: 1.25; }
   .menu-list a {
-    border-radius: 0.25rempx;
+    border-radius: 0.25rem;
     color: #d4d2d0;
     display: block;
     padding: 0.5em 0.75em; }
@@ -7941,3 +7941,15 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 
 .hero .navbar .navbar-dropdown .navbar-item {
   color: #d4d2d0; }
+
+.menu .menu-divider {
+  border-bottom: 2px solid #848a8f;
+  padding: 0.5rem;
+  margin: 0 2rem; }
+
+.App {
+  display: flex;
+  flex-direction: row; }
+
+.MainSidebar {
+  min-width: 12rem; }
