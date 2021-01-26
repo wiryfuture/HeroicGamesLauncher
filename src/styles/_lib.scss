@@ -68,7 +68,7 @@ body * {
   box-sizing: border-box;
 }
 
-//always animate FontAwesome icons
-.fa,.fas,.far,.fab,.fal {
+//always animate icons
+.icon i {
   @include animate;
 }
