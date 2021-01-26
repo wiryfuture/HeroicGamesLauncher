@@ -111,7 +111,7 @@ export default function NavBar() {
         <li>
           <NavLink 
             activeClassName="has-text-primary" 
-            exact to="/"
+            exact to="/downloads"
           >
             <span className="icon-text">
               <span className="icon is-medium has-text-primary">
@@ -120,6 +120,29 @@ export default function NavBar() {
               <span>Downloads</span>
             </span>
           </NavLink>
+        </li>
+        <li>
+          <NavLink 
+            activeClassName="has-text-primary" 
+            exact to="/settings"
+          >
+            <span className="icon-text">
+              <span className="icon is-medium has-text-primary">
+                <i className="mdi mdi-cog"></i>
+              </span>
+              <span>Settings</span>
+            </span>
+          </NavLink>
+        </li>
+        <li>
+          <a>
+            <span className="icon-text">
+              <span className="icon is-medium has-text-primary">
+                <i className="mdi mdi-help-circle"></i>
+              </span>
+              <span>About Us</span>
+            </span>
+          </a>
         </li>
         </ul>
 
