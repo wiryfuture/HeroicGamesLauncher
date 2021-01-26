@@ -1,46 +1,77 @@
-// colors
-// initial gradient, non-final
-$darker : #151218;
-$dark   : #323035;
-$mid    : #7d7881;
-$light  : #b0abb6;
-$lighter: #e4deea;
 
-$darker-hover : lighten($darker, 15%);
-$dark-hover   : lighten($dark, 15%);
-$mid-hover    : lighten($mid, 15%);
-$light-hover  : lighten($light, 15%);
-$lighter-hover: lighten($lighter, 15%);
-//moar colors
-$primary: #5c32be;
+//MDL box-shadows
+$shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$shadow-2: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$shadow-3: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$shadow-4: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+$shadow-5: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
-// auto-color cat-culations
-// pulled from @octoshrimpy https://codepen.io/octoshrimpy/pen/WmPVBb
-$num: 50%;
+$shadow-border: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
 
-@function pure($hue) {
-  @return hsl($hue, 100%, 50%);
+
+
+
+//`@include animate;` anywhere for animation
+@mixin animate {
+  transition: all 0.15s ease-in-out;
 }
 
-$red   : pure(0);
-$yellow: pure(60);
-$green : pure(120);
-$teal  : pure(180);
-$blue  : pure(240);
+//`@include custom-scroll($hover:false)` for custom scrollbar within that component.
+// Set hover to true, and scrollbar only shows up when cursor within component 
+@mixin custom-scroll($hover:false) {
+  &::-webkit-scrollbar {
+    width: 0.75rem;
 
-$primary-dark : darken($primary, 15%);
-$primary-light: lighten($primary, 15%);
+  }
 
-$success: mix($primary, $green, $num);
-$warning: mix($primary, $yellow, $num);
-$danger : mix($primary, $red, $num);
-$info   : mix($primary, $teal, $num);
+  &::-webkit-scrollbar-track {
+    // background-color: rgba(255,255,255,.05);
+    background-color: transparentize($grey-dark, .05);
+    border-radius: 0 0 2px;
+  }
 
-$success-light: lighten($success, 15%);
-$warning-light: lighten($warning, 15%);
-$danger-light : lighten($danger, 15%);
-$info-light   : lighten($info, 15%);
+  @if $hover == on-hover {
+    @include animate;
+    &:hover::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      // background-color: rgba(0,0,0,.25);
+      background-color: transparentize($grey-lighter,.25);
+      margin-right: 2px;
+    }
+  } @else {
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      // background-color: rgba(0,0,0,.25);
+      background-color: transparentize($grey-lighter,.25);
+      margin-right: 2px;
+    }
+  }
 
-// values
-$border-radius: 0.5rem;
-$border-radius-big: 1rem;
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    background: transparentize($grey-lighter,0.4);
+  }
+}
+
+html {
+  @include custom-scroll;
+}
+
+//resetting body for a cleaner setup
+body * {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+//always animate FontAwesome icons
+.fa,.fas,.far,.fab,.fal {
+  @include animate;
+}

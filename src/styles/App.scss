@@ -2,10 +2,20 @@
 
 @charset "utf-8";
 
+@import "../../node_modules/bulma/sass/utilities/initial-variables";
 
 @import './_lib.scss';
 
-// these aren't scss, so they need to be referenced from where app.css will be
-// @import "./lightstyles.css" (prefers-color-scheme: light);
-@import "./darkstyles.css" (prefers-color-scheme: light);
 
+
+
+
+
+// import dark theme, tweaked from https://github.com/jenil/bulmaswatch/tree/gh-pages/superhero
+@import "bulmaswatch/_variables";
+
+// import Bulma
+@import "../../node_modules/bulma/bulma.sass";
+
+// fix bulma breaking dark theme, also pulled from superhero above
+@import "bulmaswatch/_overrides";
