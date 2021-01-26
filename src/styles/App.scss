@@ -85,6 +85,11 @@
       top: 0;
       padding-left: 2rem;
 
+      // shadows for sticking above content
+      .dropdown-content {
+        box-shadow: $shadow-1;
+      }
+
       // force dropdown content to not wrap
       &.no-wrap {
         width: max-content;
@@ -137,6 +142,14 @@ html, body, #root, .App {
   .SidebarFreebie {
     margin: 0 0.5rem;
     position: relative;
+    @include animate;
+    
+    &:hover {
+      transform: scale(1.05);
+      img {
+        box-shadow: $shadow-2;
+      }
+    }
 
     .FreebiePrice {
       position: absolute;
@@ -151,6 +164,7 @@ html, body, #root, .App {
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: $shadow-1;
 
       &:before {
         content: "$";
@@ -160,6 +174,7 @@ html, body, #root, .App {
 
     img {
       border-radius: $radius;
+      @include animate;
     }
   }
 }

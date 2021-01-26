@@ -7974,6 +7974,8 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
     left: 100%;
     top: 0;
     padding-left: 2rem; }
+    .dropdown.is-right .dropdown-menu .dropdown-content {
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
     .dropdown.is-right .dropdown-menu.no-wrap {
       width: max-content; }
   .dropdown.is-right .dropdown-trigger .arrow {
@@ -8003,7 +8005,12 @@ html, body, #root, .App {
   height: 100%; }
   .MainSidebar .SidebarFreebie {
     margin: 0 0.5rem;
-    position: relative; }
+    position: relative;
+    transition: all 0.15s ease-in-out; }
+    .MainSidebar .SidebarFreebie:hover {
+      transform: scale(1.05); }
+      .MainSidebar .SidebarFreebie:hover img {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
     .MainSidebar .SidebarFreebie .FreebiePrice {
       position: absolute;
       z-index: 9;
@@ -8016,8 +8023,10 @@ html, body, #root, .App {
       width: 3rem;
       display: flex;
       align-items: center;
-      justify-content: center; }
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
       .MainSidebar .SidebarFreebie .FreebiePrice:before {
         content: "$"; }
     .MainSidebar .SidebarFreebie img {
-      border-radius: 0.5rem; }
+      border-radius: 0.5rem;
+      transition: all 0.15s ease-in-out; }
