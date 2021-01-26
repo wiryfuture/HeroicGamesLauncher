@@ -3,7 +3,9 @@
 @charset "utf-8";
 
 
-@import '_lib.scss';
+@import './_lib.scss';
 
-@import "_lightstyles" (prefers-color-scheme: light);
-@import "_darkstyles" (prefers-color-scheme: dark);
+// these aren't scss, so they need to be referenced from where app.css will be
+// @import "./lightstyles.css" (prefers-color-scheme: light);
+@import "./darkstyles.css" (prefers-color-scheme: light);
+
