@@ -115,3 +115,6 @@ export const formatStoreUrl = (title: string) =>
 export function getProgress(progress: InstallProgress): number {
   return Number(progress.percent.replace('%', ''))
 }
+// const gogLoginUrl = 'https://auth.gog.com/auth'
+export const gogLogin = () => ipcRenderer.send('gogLogin')
+// export const gogLogin = () => createNewWindow(gogLoginUrl)

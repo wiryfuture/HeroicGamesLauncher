@@ -4,6 +4,7 @@ import {
   openAboutWindow,
   handleQuit,
   handleKofi,
+  gogLogin,
 } from '../../helper'
 import ContextProvider from '../../state/ContextProvider'
 
@@ -26,6 +27,9 @@ export default function UserSelector() {
       </span>
       <div onClick={() => refreshLibrary()} className="userName hidden">
         Refresh Library
+      </div>
+      <div onClick={() => gogLogin()} className="userName hidden">
+        GOG Login
       </div>
       <div onClick={() => handleKofi()} className="userName hidden">
         Buy a Ko-fi

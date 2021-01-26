@@ -91,6 +91,8 @@ export class GlobalState extends PureComponent<Props> {
     const currentApp =
       libraryStatus.filter((game) => game.appName === appName)[0] || {}
     const currentWindow = BrowserWindow.getAllWindows()[0]
+    console.log(currentWindow)
+
     const windowIsVisible = currentWindow.isVisible()
     const { title } = await getGameInfo(appName)
 
@@ -203,10 +205,14 @@ export class GlobalState extends PureComponent<Props> {
     })
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const filter = storage.getItem('filter') || 'all'
     this.setState({ filter })
     this.refresh()
+    const c = await BrowserWindow.getAllWindows()[0].webContents.session.cookies.get(
+      { name: 'gog_us' }
+    )
+    console.log(c)
   }
 
   componentDidUpdate() {

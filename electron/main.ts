@@ -22,6 +22,7 @@ import {
   heroicGithubURL,
   iconDark,
   iconLight,
+  gogLoginUrl,
 } from './utils'
 
 import byteSize from 'byte-size'
@@ -195,6 +196,36 @@ ipcMain.on('Notify', (event, args) => {
 })
 
 ipcMain.on('openSupportPage', () => exec(`xdg-open ${kofiURL}`))
+
+ipcMain.on('gogLogin', async () => {
+  const gogLoginWindow = new BrowserWindow()
+  await gogLoginWindow.loadURL(gogLoginUrl)
+  let cookies = null
+  const token = await new Promise((res) => {
+    gogLoginWindow.webContents.on('did-redirect-navigation', (event, url) => {
+      if (url.includes('embed') && url.split('=')[2].length > 100) {
+        const auth_token = url.split('=')[2]
+        cookies = gogLoginWindow.webContents.session.cookies.get({})
+        console.log(cookies)
+        return res(auth_token)
+      }
+    })
+  })
+  console.log({ token })
+
+  if (token) {
+    // gogLoginWindow.destroy()
+    axios
+      .get('https://embed.gog.com/userData.json', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          withCredentials: true,
+        },
+      })
+      .then((res) => console.log(res.data))
+      .catch(console.log)
+  }
+})
 
 ipcMain.handle('writeFile', (event, args) => {
   const app = args[0]

@@ -37,6 +37,9 @@ const heroicGithubURL =
   'https://github.com/flavioislima/HeroicGamesLauncher/releases/latest'
 const kofiURL = 'https://ko-fi.com/flavioislima'
 
+const gogLoginUrl =
+  'https://auth.gog.com/auth?client_id=46899977096215655&client_secret=9d85c43b1482497dbbce61f6e4aa173a433796eeae2ca8c5f6129f2dc4de46d9&redirect_uri=https://embed.gog.com/on_login_success?origin=client&response_type=code'
+
 // check other wine versions installed
 const getAlternativeWine = () => {
   // Just add a new string here in case another path is found on another distro
@@ -413,6 +416,7 @@ export {
   loginUrl,
   sidInfoUrl,
   updateGame,
+  gogLoginUrl,
   kofiURL,
   heroicGithubURL,
 }
