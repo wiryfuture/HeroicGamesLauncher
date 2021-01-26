@@ -100,7 +100,7 @@
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "build-electron": "tsc --project electron/tsconfig.json",
     "watch-electron": "tsc --watch --project electron/tsconfig.json",
-    "css-watch": "node-sass src/App.scss src/App.css --watch"
+    "css-watch": "node-sass src/styles/App.scss src/App.css --watch"
   },
   "eslintConfig": {
     "extends": [

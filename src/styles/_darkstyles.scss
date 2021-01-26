@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+// launcher colors
+$darker : #151218;
+$dark   : #323035;
+$mid    : #7d7881;
+$light  : #b0abb6;
+$lighter: #e4deea;
+
+// set bulma colors
+$primary: #5c32be;
+
+// update bulma's component vars
+$body-background-color: $darker;
+$body-color           : $lighter;
+
+// Import Bulma
+@import "../node_modules/bulma/bulma.sass";
