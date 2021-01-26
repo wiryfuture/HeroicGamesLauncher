@@ -8,13 +8,37 @@ export default function NavBar() {
     <aside className="menu has-bottom-child MainSidebar">
       <ul className="menu-list">
         <li>
-          <a>
-            <span className="icon-text">
+          <a className="dropdown is-hoverable is-right no-small-text">
+            <span className="icon-text dropdown-trigger">
               <span className="icon is-medium has-text-primary">
                 <i className="mdi mdi-account-circle"></i>
               </span>
               <span>username</span>
+              <span className="icon arrow is-medium">
+                <i className="mdi mdi-24px mdi-chevron-right"></i>
+              </span>
+
             </span>
+            <div className="dropdown-menu no-wrap">
+              <div className="dropdown-content">
+                <div className="dropdown-item">
+                  <span className="icon-text">
+                    <span className="icon is-medium has-text-primary">
+                      <i className="mdi mdi-logout"></i>
+                    </span>
+                    <span>Logout</span>
+                  </span>
+                </div>
+                <div className="dropdown-item">
+                  <span className="icon-text">
+                    <span className="icon is-medium has-text-primary">
+                      <i className="mdi mdi-open-in-new"></i>
+                    </span>
+                    <span>View account in EGS</span>
+                  </span>
+                </div>
+              </div>
+            </div>
           </a>
         </li>
       </ul>
@@ -135,13 +159,45 @@ export default function NavBar() {
           </NavLink>
         </li>
         <li>
-          <a>
-            <span className="icon-text">
+        <a className="dropdown is-hoverable is-right is-up no-small-text">
+            <span className="icon-text dropdown-trigger">
               <span className="icon is-medium has-text-primary">
                 <i className="mdi mdi-help-circle"></i>
               </span>
               <span>About Us</span>
+              <span className="icon arrow is-medium">
+                <i className="mdi mdi-24px mdi-chevron-right"></i>
+              </span>
+
             </span>
+            <div className="dropdown-menu no-wrap">
+              <div className="dropdown-content">
+                <div className="dropdown-item">
+                  <span className="icon-text">
+                    <span className="icon is-medium has-text-primary">
+                      <i className="mdi mdi-coffee"></i>
+                    </span>
+                    <span>Buy us a Ko-fi</span>
+                  </span>
+                </div>
+                <div className="dropdown-item">
+                  <span className="icon-text">
+                    <span className="icon is-medium has-text-primary">
+                      <i className="mdi mdi-github"></i>
+                    </span>
+                    <span>Source Code</span>
+                  </span>
+                </div>
+                <div className="dropdown-item">
+                  <span className="icon-text">
+                    <span className="icon is-medium has-text-primary">
+                      <i className="mdi mdi-leaf-maple"></i>
+                    </span>
+                    <span>Secrets</span>
+                  </span>
+                </div>
+              </div>
+            </div>
           </a>
         </li>
         </ul>
