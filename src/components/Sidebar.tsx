@@ -5,7 +5,7 @@ import UserSelector from './UI/UserSelector'
 
 export default function NavBar() {
   return (
-    <aside className="menu MainSidebar">
+    <aside className="menu has-bottom-child MainSidebar">
       <ul className="menu-list">
         <li>
           <a>
@@ -102,6 +102,26 @@ export default function NavBar() {
         </li>
       </ul>
 
+
+
+      <ul className="menu-list stick-to-bottom">
+        {/* these li with navlink should be exported into ./MenuList.tsx 
+            pass in: nav location, <mdi-icon-name> https://materialdesignicons.com, text
+        */}
+        <li>
+          <NavLink 
+            activeClassName="has-text-primary" 
+            exact to="/"
+          >
+            <span className="icon-text">
+              <span className="icon is-medium has-text-primary">
+                <i className="mdi mdi-download"></i>
+              </span>
+              <span>Downloads</span>
+            </span>
+          </NavLink>
+        </li>
+        </ul>
 
     </aside>
 

@@ -7948,11 +7948,18 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .menu .menu-list li > a:hover {
   background: transparent; }
 
+.menu .menu-list.stick-to-bottom {
+  margin-top: auto; }
+
 .menu .menu-divider {
   border-bottom: 2px solid #52585c;
   padding: 0.25rem;
   margin: 0 0.5rem;
   margin-bottom: 0.25rem; }
+
+.menu.has-bottom-child {
+  display: flex;
+  flex-direction: column; }
 
 html, body, #root, .App {
   height: 100%;

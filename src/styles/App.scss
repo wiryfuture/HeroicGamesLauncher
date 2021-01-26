@@ -34,6 +34,10 @@
         background: transparent;
       }
     }
+
+    &.stick-to-bottom {
+      margin-top: auto;
+    }
   }
 
   // create a menu divider 
@@ -42,6 +46,11 @@
     padding: 0.25rem;
     margin: 0 0.5rem;
     margin-bottom: 0.25rem;
+  }
+
+  &.has-bottom-child {
+    display: flex;
+    flex-direction: column;
   }
 
 }
