@@ -8008,9 +8008,9 @@ html, body, #root, .App {
     position: relative;
     transition: all 0.15s ease-in-out; }
     .MainSidebar .SidebarFreebie:hover {
-      transform: scale(1.05); }
+      transform: scale(1.03); }
       .MainSidebar .SidebarFreebie:hover img {
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
     .MainSidebar .SidebarFreebie .FreebiePrice {
       position: absolute;
       z-index: 9;
@@ -8030,3 +8030,77 @@ html, body, #root, .App {
     .MainSidebar .SidebarFreebie img {
       border-radius: 0.5rem;
       transition: all 0.15s ease-in-out; }
+
+.gameList {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  grid-template-rows: repeat(999, min-content);
+  grid-gap: 1.5rem;
+  width: 100%; }
+  .gameList .gameCard {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    transition: all 0.15s ease-in-out; }
+    .gameList .gameCard:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      transform: scale(1.03); }
+      .gameList .gameCard:hover .card-content.bottomCard {
+        opacity: 1; }
+    .gameList .gameCard:after {
+      content: "";
+      display: block;
+      padding-bottom: 125%; }
+    .gameList .gameCard .cardContent {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0; }
+    .gameList .gameCard .gameLogo {
+      padding: 0.5rem;
+      position: absolute;
+      top: 0.5rem; }
+    .gameList .gameCard .grayscale img {
+      filter: grayscale(100%) brightness(0.33); }
+    .gameList .gameCard .grayscale.gameLogo {
+      filter: grayscale(100%) brightness(0.66); }
+    .gameList .gameCard .card-content {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      padding: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      z-index: 9; }
+      .gameList .gameCard .card-content.topCard {
+        top: 0; }
+      .gameList .gameCard .card-content.bottomCard {
+        height: 4rem;
+        bottom: 0;
+        opacity: 0;
+        transition: all 0.15s ease-in-out;
+        background: rgba(0, 0, 0, 0.75);
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        .gameList .gameCard .card-content.bottomCard .media-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative; }
+        .gameList .gameCard .card-content.bottomCard .playButton {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.15s ease-in-out;
+          border-radius: 999px; }
+          .gameList .gameCard .card-content.bottomCard .playButton .icon {
+            transition: all 0.15s ease-in-out; }
+          .gameList .gameCard .card-content.bottomCard .playButton:hover {
+            box-shadow: 0px 0px 5px -1px rgba(92, 184, 92, 0.67);
+            filter: drop-shadow(0rem 0rem 0.4rem rgba(92, 184, 92, 0.67));
+            transform: scale(1.1); }

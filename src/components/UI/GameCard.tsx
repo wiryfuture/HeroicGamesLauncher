@@ -1,3 +1,4 @@
+import { spawn } from 'child_process'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ContextProvider from '../../state/ContextProvider'
@@ -51,40 +52,76 @@ const GameCard = ({ cover, title, appName, isInstalled, logo }: Card) => {
     : '100%'
 
   return (
-    <Link
-      className="gameCard"
-      to={{
-        pathname: `/gameconfig/${appName}`,
-      }}
+    <div
+      className="gameCard card"
     >
-      {isInstalling && <span className="progress">{percent}</span>}
-      {logo && (
-        <img
-          alt="logo"
-          src={logo}
-          style={{
-            filter: isInstalled ? 'none' : `grayscale(${effectPercent})`,
+      <div className="cardContent">
+
+
+        {isInstalling && <span className="progress">{percent}</span>}
+        
+
+
+
+        <Link 
+          to={{
+            pathname: `/gameconfig/${appName}`,
           }}
-          className="gameLogo"
-        />
-      )}
-      <img
-        alt="cover-art"
-        src={cover}
-        style={{ filter: isInstalled ? 'none' : `grayscale(${effectPercent})` }}
-        className="gameImg"
-      />
-      <div className="gameTitle">
-        <span>{title}</span>
-        <i
-          className={`material-icons ${
-            isInstalled ? 'is-success' : 'is-primary'
-          }`}
+          className={`card-image ${!isInstalled ? `grayscale` : ``}`}
         >
-          {isInstalled ? 'play_circle' : 'get_app'}
-        </i>
+          <figure className="image">
+            <img
+              alt="cover-art"
+              src={cover}
+            />
+          </figure>
+        </Link>
+        
+        <div className={`card-content topCard`}>
+          {logo && (
+            <img
+              alt="logo"
+              src={logo}
+              className={`gameLogo ${!isInstalled ? `grayscale` : ``}`}
+            />
+          )}
+        </div>
+
+        <div className={`card-content bottomCard ${logo ? `hasLogo` : ``}`}>
+          <div className="media-content">
+            {/* {!logo ? (
+              <div className="subtitle">{title}</div>
+            ) : (<span></span>)} */}
+
+            {isInstalling && (
+              // installing css mask fancy stuff
+              <span></span>
+            )}
+
+            {isInstalled && (
+              <span className="playButton">
+                <span className="icon is-large has-text-success">
+                  <i className="mdi mdi-36px mdi-play"></i>
+                </span>
+                <div className="background"></div>
+              </span>
+            )}
+
+          </div>
+        </div>
+        
+        {/* <div className="gameTitle">
+          <span>{title}</span>
+          <i
+            className={`material-icons ${
+              isInstalled ? 'is-success' : 'is-primary'
+            }`}
+          >
+            {isInstalled ? 'play_circle' : 'get_app'}
+          </i>
+        </div> */}
       </div>
-    </Link>
+    </div>
   )
 }
 
