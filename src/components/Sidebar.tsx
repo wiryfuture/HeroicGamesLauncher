@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import SearchBar from './UI/SearchBar'
 import UserSelector from './UI/UserSelector'
 
-export default function NavBar() {
+export default function Sidebar() {
   return (
     <aside className="menu has-bottom-child MainSidebar">
       <ul className="menu-list">

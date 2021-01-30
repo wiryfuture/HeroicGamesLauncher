@@ -4,7 +4,7 @@ import './css/App.css'
 import { Library } from './components/Library'
 import Login from './components/Login'
 import { HashRouter, Switch, Route } from 'react-router-dom'
-import NavBar from './components/Sidebar'
+import Sidebar from './components/Sidebar'
 import Settings from './components/Settings'
 import GamePage from './components/GamePage/GamePage'
 import Header from './components/UI/Header'
@@ -24,20 +24,23 @@ function App() {
   return (
     <div className="App">
       <HashRouter>
-        <NavBar />
-        <Switch>
-          <Route exact path="/">
-            <Header
-              goTo={''}
-              renderBackButton={false}
-              handleFilter={handleFilter}
-              numberOfGames={numberOfGames}
-            />
-            <Library library={library} />
-          </Route>
-          <Route exact path="/gameconfig/:appName" component={GamePage} />
-          <Route path="/settings/:appName/:type" component={Settings} />
-        </Switch>
+        <Sidebar />
+        <div className="contentWrap">
+
+          <Switch>
+            <Route exact path="/">
+              <Header
+                goTo={''}
+                renderBackButton={false}
+                handleFilter={handleFilter}
+                numberOfGames={numberOfGames}
+              />
+              <Library library={library} />
+            </Route>
+            <Route exact path="/gameconfig/:appName" component={GamePage} />
+            <Route path="/settings/:appName/:type" component={Settings} />
+          </Switch>
+        </div>
       </HashRouter>
     </div>
   )
