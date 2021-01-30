@@ -84,6 +84,7 @@
       left: 100%;
       top: 0;
       padding-left: 2rem;
+      z-index: 99;
 
       // shadows for sticking above content
       .dropdown-content {
@@ -117,6 +118,39 @@
       }
     }
   }
+
+
+
+//////// is on top
+
+  &.is-on-top {
+    .dropdown-menu {
+      margin-left: -1rem;
+      margin-top: -2.6rem;
+    }
+  }
+
+
+//////// smaller default
+  &.smaller-default {
+    .dropdown-menu {
+      min-width: 3rem;
+
+      a {
+        min-width: 3rem;
+      }
+    }
+  }
+
+}
+
+
+// navbar
+
+
+.navbar.is-fixed-top {
+  position: sticky;
+  top: 0;
 }
 
 
@@ -322,4 +356,14 @@ html, body, #root, .App {
       }
     }
   }
+}
+
+
+///////////////////////////////////////////////
+// navbar - search, filter games, refresh, etc
+///////////////////////////////////////////////
+
+// fancy hidden transparency
+.navbar.libNav {
+  background: transparentize($grey-darker, 0.25);
 }

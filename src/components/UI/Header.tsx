@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import ContextProvider from '../../state/ContextProvider'
+import SearchBar from './SearchBar'
 
 interface Props {
   renderBackButton: boolean
@@ -15,89 +16,42 @@ export default function Header({
   handleFilter,
   goTo,
 }: Props) {
-  const { filter, libraryStatus } = useContext(ContextProvider)
-  const haveDownloads = libraryStatus.filter(
-    (game) => game.status === 'installing' || game.status === 'updating'
-  ).length
 
   return (
-    <></>
+    <div className="navbar is-fixed-top libNav">
+      
+      <div className="navbar-start">
+        <div className="navbar-item">
 
+          <label htmlFor="filter" className="label">Filter:</label>
+          </div>
+        <div className="navbar-item">
+          <div className="control">
+            <div className="dropdown is-hoverable is-on-top no-small-text smaller-default">
+              <div className="dropdown-trigger">
+                <div>Installed</div>
+              </div>
+              <div className="dropdown-menu">
+                <div className="dropdown-content">
+                  <a className="dropdown-item">Installed</a>
+                  <a className="dropdown-item">All</a>
+                </div>
+              </div>
+            </div>
+          </div>
 
+        </div>
+      </div>
 
-    // <>
-    //   <div className="header">
-    //     <section className="section">
-    //       <div className="container is-fluid">
-    //           <h1 className="title">
-    //               Bulma
-    //           </h1>
-    //           <p className="subtitle">
-    //               Modern CSS framework based on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">Flexbox</a>
-    //           </p>
-    //           <div className="field">
-    //               <div className="control">
-    //                   <input className="input"
-    //                         type="text"
-    //                         placeholder="Input"></input>
-    //               </div>
-    //           </div>
-    //           <div className="field">
-    //               <p className="control">
-    //                   <span className="select">
-    //                       <select>
-    //                           <option>Select dropdown</option>
-    //                       </select>
-    //                   </span>
-    //               </p>
-    //           </div>
-    //           <div className="buttons">
-    //               <a className="button is-primary">Primary</a>
-    //               <a className="button is-link">Link</a>
-    //           </div>
-    //       </div>
-    //   </section>
-    //     {handleFilter && (
-    //       <span className="selectFilter">
-    //         <span>Filter:</span>
-    //         <span
-    //           className={filter === 'all' ? 'selected' : ''}
-    //           onClick={() => handleFilter('all')}
-    //         >
-    //           All
-    //         </span>
-    //         <span
-    //           className={filter === 'installed' ? 'selected' : ''}
-    //           onClick={() => handleFilter('installed')}
-    //         >
-    //           Ready
-    //         </span>
-    //         <span
-    //           className={filter === 'uninstalled' ? 'selected' : ''}
-    //           onClick={() => handleFilter('uninstalled')}
-    //         >
-    //           Not Ready
-    //         </span>
-    //         <span
-    //           className={filter === 'downloading' ? 'selected' : ''}
-    //           onClick={() => handleFilter('downloading')}
-    //         >
-    //           {`Downloading ${haveDownloads > 0 ? `(${haveDownloads})` : ''}`}
-    //         </span>
-    //       </span>
-    //     )}
-    //     {Boolean(numberOfGames) && (
-    //       <span className="totalGamesText">Total Games: {numberOfGames}</span>
-    //     )}
-    //     {renderBackButton && (
-    //       <div className="leftCluster">
-    //         <Link className="returnLink" to={goTo}>
-    //           <span className="material-icons">arrow_back</span>
-    //           Return
-    //         </Link>
-    //       </div>
-    //     )}
-    //   </div>
-    // </>
+      <div className="navbar-item field force-center">
+        <SearchBar />
+      </div>
+      
+      <div className="navbar-end">
+        <div className="navbar-item has-dropdown is-hoverable is-right">
+        </div>
+      </div>
+
+    </div>
   )
 }
