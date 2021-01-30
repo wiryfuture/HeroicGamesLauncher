@@ -8052,7 +8052,7 @@ html, body, #root, .App {
       content: "";
       display: block;
       padding-bottom: 125%; }
-    .gameList .gameCard .cardContent {
+    .gameList .gameCard .cardWrap {
       position: absolute;
       left: 0;
       right: 0;
@@ -8066,6 +8066,12 @@ html, body, #root, .App {
       filter: grayscale(100%) brightness(0.33); }
     .gameList .gameCard .grayscale.gameLogo {
       filter: grayscale(100%) brightness(0.66); }
+    .gameList .gameCard .card-image,
+    .gameList .gameCard figure.image,
+    .gameList .gameCard .image img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover; }
     .gameList .gameCard .card-content {
       position: absolute;
       width: 100%;
@@ -8091,16 +8097,24 @@ html, body, #root, .App {
           align-items: center;
           justify-content: center;
           position: relative; }
-        .gameList .gameCard .card-content.bottomCard .playButton {
+        .gameList .gameCard .card-content.bottomCard .playButton,
+        .gameList .gameCard .card-content.bottomCard .installButton {
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
           transition: all 0.15s ease-in-out;
           border-radius: 999px; }
-          .gameList .gameCard .card-content.bottomCard .playButton .icon {
+          .gameList .gameCard .card-content.bottomCard .playButton .icon,
+          .gameList .gameCard .card-content.bottomCard .installButton .icon {
             transition: all 0.15s ease-in-out; }
-          .gameList .gameCard .card-content.bottomCard .playButton:hover {
+          .gameList .gameCard .card-content.bottomCard .playButton.playButton:hover,
+          .gameList .gameCard .card-content.bottomCard .installButton.playButton:hover {
             box-shadow: 0px 0px 5px -1px rgba(92, 184, 92, 0.67);
             filter: drop-shadow(0rem 0rem 0.4rem rgba(92, 184, 92, 0.67));
+            transform: scale(1.1); }
+          .gameList .gameCard .card-content.bottomCard .playButton.installButton:hover,
+          .gameList .gameCard .card-content.bottomCard .installButton.installButton:hover {
+            box-shadow: 0px 0px 5px -1px rgba(50, 152, 220, 0.67);
+            filter: drop-shadow(0rem 0rem 0.4rem rgba(50, 152, 220, 0.67));
             transform: scale(1.1); }

@@ -222,8 +222,8 @@ html, body, #root, .App {
     }
     
 
-    // cardContent needed, see link above
-    .cardContent {
+    // cardWrap needed, see link above
+    .cardWrap {
       position: absolute;
       left: 0;
       right: 0;
@@ -245,6 +245,14 @@ html, body, #root, .App {
       &.gameLogo {
         filter: grayscale(100%) brightness(0.66);
       } 
+    }
+
+    .card-image,
+    figure.image,
+    .image img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
     
 
@@ -281,7 +289,8 @@ html, body, #root, .App {
           
         }
 
-        .playButton {
+        .playButton,
+        .installButton {
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -293,9 +302,15 @@ html, body, #root, .App {
             @include animate;
           }
 
-          &:hover{
+          // easiest way at 0046 to combine them into one without dupe text
+          &.playButton:hover{
             box-shadow: 0px 0px 5px -1px transparentize($success, 0.33);
             filter: drop-shadow(0rem 0rem 0.4rem transparentize($success, 0.33));
+            transform: scale(1.1);
+          }
+          &.installButton:hover{
+            box-shadow: 0px 0px 5px -1px transparentize($info, 0.33);
+            filter: drop-shadow(0rem 0rem 0.4rem transparentize($info, 0.33));
             transform: scale(1.1);
           }
         }

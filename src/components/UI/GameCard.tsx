@@ -55,7 +55,7 @@ const GameCard = ({ cover, title, appName, isInstalled, logo }: Card) => {
     <div
       className="gameCard card"
     >
-      <div className="cardContent">
+      <div className="cardWrap">
 
 
         {isInstalling && <span className="progress">{percent}</span>}
@@ -89,9 +89,15 @@ const GameCard = ({ cover, title, appName, isInstalled, logo }: Card) => {
 
         <div className={`card-content bottomCard ${logo ? `hasLogo` : ``}`}>
           <div className="media-content">
-            {/* {!logo ? (
-              <div className="subtitle">{title}</div>
-            ) : (<span></span>)} */}
+            
+            {!isInstalled && (
+              <span className="installButton">
+                <span className="icon is-large has-text-info">
+                  <i className="mdi mdi-36px mdi-download"></i>
+                </span>
+                <div className="background"></div>
+              </span>
+            )}
 
             {isInstalling && (
               // installing css mask fancy stuff
