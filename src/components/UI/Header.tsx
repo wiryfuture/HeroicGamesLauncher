@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import ContextProvider from '../../state/ContextProvider'
 import SearchBar from './SearchBar'
 
@@ -11,11 +10,10 @@ interface Props {
 }
 
 export default function Header({
-  renderBackButton,
-  numberOfGames,
-  handleFilter,
-  goTo,
+  renderBackButton
 }: Props) {
+
+  const { refreshLibrary } = React.useContext(ContextProvider)
 
   return (
     <div className="navbar is-fixed-top libNav">
@@ -43,7 +41,9 @@ export default function Header({
           </a>
         </div>
         <div className="navbar-item">
-          <a className="icon is-medium has-text-primary refreshLib">
+          <a 
+            onClick={() => refreshLibrary()}
+            className="icon is-medium has-text-primary refreshLib">
               <i className="mdi mdi-24px mdi-cached"></i>
             </a>
         </div>

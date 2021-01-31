@@ -1,4 +1,4 @@
-import { spawn } from 'child_process'
+// import { spawn } from 'child_process'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ContextProvider from '../../state/ContextProvider'
@@ -17,7 +17,7 @@ interface InstallProgress {
   bytes: string
 }
 
-const GameCard = ({ cover, title, appName, isInstalled, logo }: Card) => {
+const GameCard = ({ cover, appName, isInstalled, logo }: Card) => {
   const [progress, setProgress] = useState({
     percent: '0.00%',
     bytes: '0/0MB',
@@ -48,9 +48,6 @@ const GameCard = ({ cover, title, appName, isInstalled, logo }: Card) => {
   }, [isInstalling, appName])
 
   const { percent } = progress
-  const effectPercent = isInstalling
-    ? `${150 - Number(percent.replace('%', ''))}%`
-    : '100%'
 
   return (
     <div

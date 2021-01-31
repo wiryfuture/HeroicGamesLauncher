@@ -1,9 +1,26 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import SearchBar from './UI/SearchBar'
-import UserSelector from './UI/UserSelector'
+// import SearchBar from './UI/SearchBar'
+// import UserSelector from './UI/UserSelector'
+import {
+  legendary,
+  handleKofi,
+  // handleGithub,
+} from '../helper'
+import ContextProvider from '../state/ContextProvider'
 
 export default function Sidebar() {
+
+  const { user, refresh } = React.useContext(ContextProvider)
+  const handleLogout = async () => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('are you sure?')) {
+      await legendary(`auth --delete`)
+      await legendary(`cleanup`)
+      refresh()
+    }
+  }
+
   return (
     <aside className="menu has-bottom-child MainSidebar">
       <ul className="menu-list">
@@ -13,7 +30,7 @@ export default function Sidebar() {
               <span className="icon is-medium has-text-primary">
                 <i className="mdi mdi-account-circle"></i>
               </span>
-              <span>username</span>
+              <span>{user}</span>
               <span className="icon arrow is-medium">
                 <i className="mdi mdi-24px mdi-chevron-right"></i>
               </span>
@@ -21,7 +38,9 @@ export default function Sidebar() {
             </span>
             <div className="dropdown-menu no-wrap">
               <div className="dropdown-content">
-                <div className="dropdown-item">
+                <div 
+                  onClick={() => handleLogout()}
+                  className="dropdown-item">
                   <span className="icon-text">
                     <span className="icon is-medium has-text-primary">
                       <i className="mdi mdi-logout"></i>
@@ -164,7 +183,7 @@ export default function Sidebar() {
               <span className="icon is-medium has-text-primary">
                 <i className="mdi mdi-help-circle"></i>
               </span>
-              <span>About Us</span>
+              <span>About</span>
               <span className="icon arrow is-medium">
                 <i className="mdi mdi-24px mdi-chevron-right"></i>
               </span>
@@ -172,7 +191,9 @@ export default function Sidebar() {
             </span>
             <div className="dropdown-menu no-wrap">
               <div className="dropdown-content">
-                <div className="dropdown-item">
+                <div 
+                  onClick={() => handleKofi()}
+                  className="dropdown-item">
                   <span className="icon-text">
                     <span className="icon is-medium has-text-primary">
                       <i className="mdi mdi-coffee"></i>
@@ -188,7 +209,10 @@ export default function Sidebar() {
                     <span>Source Code</span>
                   </span>
                 </div>
-                <div className="dropdown-item">
+                <div 
+                  // TODO this needs to be attached
+                  // onClick={() => handleGithub()}
+                  className="dropdown-item">
                   <span className="icon-text">
                     <span className="icon is-medium has-text-primary">
                       <i className="mdi mdi-leaf-maple"></i>
@@ -203,35 +227,5 @@ export default function Sidebar() {
         </ul>
 
     </aside>
-
-
-    // <div className="NavBar">
-    //   <div className="Links">
-    //     <NavLink
-    //       activeStyle={{ color: '#FFA800', fontWeight: 500 }}
-    //       isActive={(match, location) => {
-    //         if (match) {
-    //           return true
-    //         }
-    //         return location.pathname.includes('gameconfig')
-    //       }}
-    //       exact
-    //       to="/"
-    //     >
-    //       Library
-    //     </NavLink>
-    //     <NavLink
-    //       activeStyle={{ color: '#FFA800', fontWeight: 500 }}
-    //       isActive={(match, location) => location.pathname.includes('settings')}
-    //       to={{
-    //         pathname: '/settings/default/general',
-    //       }}
-    //     >
-    //       Settings
-    //     </NavLink>
-    //   </div>
-    //   <SearchBar />
-    //   <UserSelector />
-    // </div>
   )
 }

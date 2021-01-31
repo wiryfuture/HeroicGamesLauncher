@@ -4,7 +4,7 @@ import {
   openAboutWindow,
   handleQuit,
   handleKofi,
-} from '../../helper'
+} from '../../helper' 
 import ContextProvider from '../../state/ContextProvider'
 
 export default function UserSelector() {
