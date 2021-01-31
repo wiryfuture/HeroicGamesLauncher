@@ -377,9 +377,47 @@ html, body, #root, .App {
 .navbar.libNav {
   background: transparentize($grey-darker, 0.25);
 
+  .libraryFilter,
+  .changeView {
+    & > :not(:first-child) {
+      padding-left: 0.5rem;
+    }
+
+    .is-active {
+      pointer-events: none;
+      color: $text;
+      font-weight: bold;
+    }
+  }
 
   .searchBar {
     position: relative;
+
+    .input {
+      background: $grey-dark;
+      border: none;
+      color: $grey-lighter;
+      border-radius: $radius-small;
+      @include animate;
+      box-shadow: none;
+
+      // this adds a different cursor color that text
+      // https://codepen.io/octoshrimpy/pen/Rxqpem
+      color: $primary;
+      text-shadow: 0 0 0 $grey-lighter;
+      outline: none;
+      -webkit-text-fill-color: transparent;
+
+      &::placeholder {
+        color: $grey-light;
+        font-weight: lighter;
+      }
+
+      &:active,
+      &:focus {
+        box-shadow: $shadow-2;
+      }
+    }
 
     .closeButton {
       position: absolute;
@@ -389,4 +427,5 @@ html, body, #root, .App {
       pointer-events: initial;
     }
   }
+
 }

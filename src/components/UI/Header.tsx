@@ -21,11 +21,11 @@ export default function Header({
     <div className="navbar is-fixed-top libNav">
       
       <div className="navbar-start gameFilter">
-        <div className="navbar-item">
+        {/* empty navbar item before and after as spacers */}
+        <div className="navbar-item"></div>
+        <div className="navbar-item libraryFilter">
           <a>Installed</a>
-        </div>
-        <div className="navbar-item">
-          <a>All</a>
+          <a className="is-active">All</a>
         </div>
       </div>
 
@@ -34,8 +34,20 @@ export default function Header({
       </div>
       
       <div className="navbar-end">
-        <div className="navbar-item has-dropdown is-hoverable is-right">
+        <div className="navbar-item changeView">
+          <a className="icon is-medium is-active">
+            <i className="mdi mdi-24px mdi-view-module"></i>
+          </a>
+          <a className="icon is-medium">
+            <i className="mdi mdi-24px mdi-view-list"></i>
+          </a>
         </div>
+        <div className="navbar-item">
+          <a className="icon is-medium has-text-primary refreshLib">
+              <i className="mdi mdi-24px mdi-cached"></i>
+            </a>
+        </div>
+        <div className="navbar-item"></div>
       </div>
 
     </div>

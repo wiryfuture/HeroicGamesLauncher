@@ -8161,8 +8161,32 @@ html, body, #root, .App {
 
 .navbar.libNav {
   background: rgba(40, 45, 47, 0.75); }
+  .navbar.libNav .libraryFilter > :not(:first-child),
+  .navbar.libNav .changeView > :not(:first-child) {
+    padding-left: 0.5rem; }
+  .navbar.libNav .libraryFilter .is-active,
+  .navbar.libNav .changeView .is-active {
+    pointer-events: none;
+    color: #d4d2d0;
+    font-weight: bold; }
   .navbar.libNav .searchBar {
     position: relative; }
+    .navbar.libNav .searchBar .input {
+      background: #343c42;
+      border: none;
+      color: #d4d2d0;
+      border-radius: 0.25rem;
+      transition: all 0.15s ease-in-out;
+      box-shadow: none;
+      color: #ebb932;
+      text-shadow: 0 0 0 #d4d2d0;
+      outline: none;
+      -webkit-text-fill-color: transparent; }
+      .navbar.libNav .searchBar .input::placeholder {
+        color: #848a8f;
+        font-weight: lighter; }
+      .navbar.libNav .searchBar .input:active, .navbar.libNav .searchBar .input:focus {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
     .navbar.libNav .searchBar .closeButton {
       position: absolute;
       right: 0;
