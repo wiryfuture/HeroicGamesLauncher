@@ -9,23 +9,9 @@ interface Props {
   handleFilter?: (value: string) => void
 }
 
-// export function toggleFilter(args : string) {
-//   //
-//   if (args === "all") {
-//     // remove is-active from all children of libraryFilter
-//     // add is-active to all
-
-//   } else {
-//     // remove is-active from all children of libraryFilter
-//     // add is-active to installed  
-//   }
-
-//   handleFilter(args)}
-// }
-
 
 export default function Header({
-  renderBackButton
+  handleFilter
 }: Props) {
 
   const { refreshLibrary } = React.useContext(ContextProvider)
@@ -34,14 +20,13 @@ export default function Header({
 function toggleFilters (target : EventTarget, filter: string) {
   const elm = target as Element
   const parent = elm.parentElement as Element
-  const children = parent.children
-  const childElms = Array.from(children)
+  const children = Array.from(parent.children)
   
-  for (const child of childElms) {
+  for (const child of children) {
     child.classList.toggle("is-active")
   }
 
-  handleFilter(filter)
+  if (handleFilter) handleFilter(filter)
 }
 
   return (
