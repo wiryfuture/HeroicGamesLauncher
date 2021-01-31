@@ -9,11 +9,40 @@ interface Props {
   handleFilter?: (value: string) => void
 }
 
+// export function toggleFilter(args : string) {
+//   //
+//   if (args === "all") {
+//     // remove is-active from all children of libraryFilter
+//     // add is-active to all
+
+//   } else {
+//     // remove is-active from all children of libraryFilter
+//     // add is-active to installed  
+//   }
+
+//   handleFilter(args)}
+// }
+
+
 export default function Header({
   renderBackButton
 }: Props) {
 
   const { refreshLibrary } = React.useContext(ContextProvider)
+
+// feel free to cry after reading this bit lmao 
+function toggleFilters (target : EventTarget, filter: string) {
+  const elm = target as Element
+  const parent = elm.parentElement as Element
+  const children = parent.children
+  const childElms = Array.from(children)
+  
+  for (const child of childElms) {
+    child.classList.toggle("is-active")
+  }
+
+  handleFilter(filter)
+}
 
   return (
     <div className="navbar is-fixed-top libNav">
@@ -22,8 +51,12 @@ export default function Header({
         {/* empty navbar item before and after as spacers */}
         <div className="navbar-item"></div>
         <div className="navbar-item libraryFilter">
-          <a>Installed</a>
-          <a className="is-active">All</a>
+          <a
+            onClick={(e) => toggleFilters(e.target, "installed") }
+            className="installed">Installed</a>
+          <a 
+            onClick={(e) => toggleFilters(e.target, "all") }
+          className="all is-active">All</a>
         </div>
       </div>
 
