@@ -148,10 +148,20 @@
 // navbar
 
 
-.navbar.is-fixed-top {
-  position: sticky;
-  top: 0;
+.navbar{
+
+  &.is-fixed-top {
+    position: sticky;
+    top: 0;
+  }
+
+  .navbar-item.force-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
+
 
 
 ///////////////////////////////////////////////
@@ -218,7 +228,7 @@ html, body, #root, .App {
 
 .contentWrap {
   width: 100%;
-  overflow: auto;
+  overflow: overlay;
   @include custom-scroll;
 }
 
@@ -230,7 +240,7 @@ html, body, #root, .App {
 .gameList {
   padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
 
   // ugly 999 repeat to force min-content across all rows
   grid-auto-rows: min-content; 
@@ -366,4 +376,17 @@ html, body, #root, .App {
 // fancy hidden transparency
 .navbar.libNav {
   background: transparentize($grey-darker, 0.25);
+
+
+  .searchBar {
+    position: relative;
+
+    .closeButton {
+      position: absolute;
+      right: 0;
+      z-index: 99;
+      cursor: pointer;
+      pointer-events: initial;
+    }
+  }
 }

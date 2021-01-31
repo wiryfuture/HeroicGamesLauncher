@@ -6,30 +6,36 @@ export default function SearchBar() {
   const [textValue, setTextValue] = useState('')
 
   return (
-    <div className="SearchBar">
-      <span onClick={() => handleSearch(textValue)} className="material-icons">
-        search
-      </span>
-      <input
-        className="searchInput"
-        value={textValue}
-        onChange={(event) => {
-          setTextValue(event.target.value)
-          handleSearch(event.target.value)
-        }}
-        placeholder={'Enter the game name here...'}
-      />
-      {textValue.length > 0 && (
+    <div className="searchBar field">
+      <div className="control has-icons-left has-icons-right">
+
+        <input
+          className="searchInput input"
+          value={textValue}
+          onChange={(event) => {
+            setTextValue(event.target.value)
+            handleSearch(event.target.value)
+          }}
+          placeholder={'Search my library'}
+        />
+
+        <span className="icon has-text-primary is-left">
+          <i className="mdi mdi-24px mdi-magnify"></i>
+        </span>
+
+        {textValue.length > 0 && (
         <span
           onClick={() => {
             setTextValue('')
             handleSearch('')
           }}
-          className="material-icons close"
+          className="icon has-text-primary closeButton is-right"
         >
-          close
+          <i className="mdi mdi-24px mdi-close"></i>
         </span>
       )}
+      </div>
+
     </div>
   )
 }

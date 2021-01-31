@@ -20,26 +20,12 @@ export default function Header({
   return (
     <div className="navbar is-fixed-top libNav">
       
-      <div className="navbar-start">
+      <div className="navbar-start gameFilter">
         <div className="navbar-item">
-
-          <label htmlFor="filter" className="label">Filter:</label>
-          </div>
+          <a>Installed</a>
+        </div>
         <div className="navbar-item">
-          <div className="control">
-            <div className="dropdown is-hoverable is-on-top no-small-text smaller-default">
-              <div className="dropdown-trigger">
-                <div>Installed</div>
-              </div>
-              <div className="dropdown-menu">
-                <div className="dropdown-content">
-                  <a className="dropdown-item">Installed</a>
-                  <a className="dropdown-item">All</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <a>All</a>
         </div>
       </div>
 
