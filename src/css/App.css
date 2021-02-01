@@ -8193,3 +8193,58 @@ html, body, #root, .App {
       z-index: 99;
       cursor: pointer;
       pointer-events: initial; }
+
+.gamePage {
+  padding: 0 2rem;
+  margin-bottom: 4rem; }
+  .gamePage .navbar {
+    position: sticky;
+    top: 0;
+    background: #282d2f;
+    align-items: stretch;
+    padding: 1rem 0;
+    min-height: 3.25rem;
+    display: flex; }
+  .gamePage .backArrow {
+    padding: 0; }
+  .gamePage .leftContent {
+    width: 50%;
+    overflow: visible; }
+  .gamePage .gameName {
+    margin-left: 5rem; }
+  .gamePage .navbar-item {
+    align-items: center;
+    display: flex; }
+  .gamePage .controls,
+  .gamePage .readOnly,
+  .gamePage .gameSettings {
+    padding: 2rem 0; }
+  .gamePage .controls {
+    display: flex;
+    align-items: center; }
+  .gamePage .links {
+    margin-left: auto; }
+    .gamePage .links > *:not(:first-child) {
+      margin-left: 1rem; }
+  .gamePage .navbar-divider {
+    margin: 1rem 3rem; }
+  .gamePage .readOnly,
+  .gamePage .gameSettings {
+    display: grid;
+    grid-template-columns: min-content 1fr; }
+    .gamePage .readOnly .tagline,
+    .gamePage .gameSettings .tagline {
+      color: #848a8f;
+      white-space: nowrap; }
+      .gamePage .readOnly .tagline:after,
+      .gamePage .gameSettings .tagline:after {
+        content: ":";
+        padding-right: 2rem; }
+      .gamePage .readOnly .tagline:not(:last-child),
+      .gamePage .gameSettings .tagline:not(:last-child) {
+        margin-bottom: 1rem; }
+  .gamePage .wineExtra {
+    display: flex;
+    justify-content: center; }
+  .gamePage .uninstallWrap {
+    padding-top: 4rem; }

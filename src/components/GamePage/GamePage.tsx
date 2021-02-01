@@ -130,9 +130,106 @@ export default function GamePage() {
     const protonDBurl = `https://www.protondb.com/search?q=${title}`
 
     return (
-      <>
-        <Header goTo={'/'} renderBackButton />
-        <div className="gameConfigContainer">
+      <div className="gamePage">
+
+        {/* left container */}
+        <div className="leftContent">
+          <div className="navbar">
+            <div className="navbar-item backArrow">
+              <a className="icon is-active">
+                <i className="mdi mdi-24px mdi-arrow-left"></i>
+              </a>
+            </div>
+            <div className="navbar-item gameName has-text-primary is-size-4">
+              {title}
+            </div>
+          </div>
+
+          <div className="controls">
+            <button className="button is-success is-uppercase has-text-dark">play</button>
+            {cloudSaveEnabled && (
+              <div
+                style={{
+                  color: autoSyncSaves ? '#07C5EF' : '',
+                }}
+              >
+                Sync Saves: {autoSyncSaves ? 'Enabled' : 'Disabled'}
+              </div>
+            )}
+            <span className="links">
+              <a href="protonDBurl" className="icon-text proton">
+                <span className="has-text-grey-lighter">ProtonDB</span>
+                <span className="icon has-text-primary ">
+                  <i className="mdi mdi-open-in-new"></i>
+                </span>
+              </a>
+              <a href="" className="icon-text epic">
+                <span className="has-text-grey-lighter">Epic Store</span>
+                <span className="icon has-text-primary ">
+                  <i className="mdi mdi-open-in-new"></i>
+                </span>
+              </a>
+            </span>
+          </div>
+
+          <div className="navbar-divider"></div>
+
+          <div className="readOnly">
+            <div className="tagline">Version</div>
+            <div className="version">{version}</div>
+            <span className="tagline">Location</span>
+            <span className="location">{install_path}</span>
+            <div className="tagline">Size</div>
+            <div className="size">{install_size}</div>
+          </div>
+
+
+          <div className="navbar-divider"></div>
+            
+          <div className="gameSettings">
+            <div className="tagline">Wine Prefix</div>
+            <div className="prefix">insert prefix location here</div>
+            <div className="tagline">Wine Version</div>
+            <div className="wineVersion">insert wine/proton choice dropdown here</div>
+          </div>
+
+          <div className="wineExtra links">
+              <a href="protonDBurl" className="icon-text cfg">
+                <span className="has-text-grey-lighter">WineCFG</span>
+                <span className="icon has-text-primary ">
+                  <i className="mdi mdi-open-in-new"></i>
+                </span>
+              </a>
+              <a href="" className="icon-text tricks">
+                <span className="has-text-grey-lighter">Winetricks</span>
+                <span className="icon has-text-primary ">
+                  <i className="mdi mdi-open-in-new"></i>
+                </span>
+              </a>
+            </div>
+            
+            <div className="uninstallWrap">
+              <button className="button uninstall has-text-danger is-uppercase is-dark">Uninstall</button>
+            </div>
+
+        </div>
+
+        {/* image on right */}
+        
+        {/* <figure className="image is-square gameImage">
+          <img src={art_square}/>
+        </figure> */}
+
+
+        {/* gradient over image */}
+
+
+
+
+
+
+{/* old junk */}
+        {/* <div className="gameConfigContainer">
           {title ? (
             <>
               <span
@@ -281,8 +378,8 @@ export default function GamePage() {
           ) : (
             <Update />
           )}
-        </div>
-      </>
+        </div> */}
+      </div>
     )
   }
   return null

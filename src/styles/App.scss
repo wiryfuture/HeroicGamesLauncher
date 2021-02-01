@@ -429,3 +429,97 @@ html, body, #root, .App {
   }
 
 }
+
+
+
+///////////////////////////////////////////////
+// game page
+///////////////////////////////////////////////
+
+.gamePage {
+  padding: 0 2rem;
+  margin-bottom: 4rem;
+
+  .navbar {
+    position: sticky;
+    top: 0;
+    background: $grey-darker;
+    
+    // all of this is to force the regular is-spaced and sizing when in smaller screens
+    align-items: stretch;
+    padding: 1rem 0;
+    min-height: 3.25rem;
+    display: flex;
+  }
+  
+  .backArrow {
+    padding: 0;
+  }
+
+  .leftContent {
+    width: 50%;
+    overflow: visible;
+  }
+
+  .gameName {
+    margin-left: 5rem;
+  }
+
+
+  .navbar-item {
+    align-items: center;
+    display: flex;
+  }
+
+  .controls,
+  .readOnly,
+  .gameSettings {
+    padding: 2rem 0;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .links {
+    margin-left: auto;
+
+    > *:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+
+  .navbar-divider {
+    margin: 1rem 3rem;
+  }
+
+  .readOnly,
+  .gameSettings {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+
+    .tagline {
+      color: $grey-light;
+      white-space: nowrap;
+
+      &:after {
+        content: ":";
+        padding-right: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .wineExtra {
+    display: flex;
+  justify-content: center;
+  }
+
+  .uninstallWrap {
+    padding-top: 4rem;
+  }
+}
