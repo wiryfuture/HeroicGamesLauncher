@@ -7,12 +7,15 @@ const initialContext: ContextType = {
   libraryStatus: [],
   refreshing: false,
   filter: 'all',
+  layout: 'grid',
   error: false,
-  refresh: () => null,
-  refreshLibrary: () => null,
-  handleGameStatus: () => null,
+  gameUpdates: [],
+  refresh: () => Promise.resolve(),
+  refreshLibrary: () => Promise.resolve(),
+  handleGameStatus: () => Promise.resolve(),
   handleSearch: () => null,
   handleFilter: () => null,
+  handleLayout: () => null,
 }
 
 export default React.createContext(initialContext)

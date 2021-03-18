@@ -27,7 +27,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "."
   },
   "exclude": [
     "node_modules/**/*",
@@ -37,9 +38,11 @@
     "webpack",
     "jest",
     "src/setupTests.ts",
-    "public/start-react.js"
+    "public/start-react.js",
+    "public/*.js"
   ],
   "include": [
-    "src"
+    "src",
+    "src/types.ts"
   ]
 }
