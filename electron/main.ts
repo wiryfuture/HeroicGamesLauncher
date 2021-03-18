@@ -11,6 +11,7 @@ import {
 } from 'electron'
 
 import isDev from 'electron-is-dev'
+import { gogRequest } from 'gog_utils/requests'
 import {
   existsSync,
   mkdirSync,
@@ -77,6 +78,7 @@ function createWindow(): BrowserWindow {
 
   setTimeout(() => {
     getLatestDxvk()
+    gogRequest()
   }, 2500)
 
   //load the index.html from a url
@@ -239,31 +241,11 @@ ipcMain.handle('checkVersion', () => checkForUpdates())
 ipcMain.on('gogLogin', async () => {
   const gogLoginWindow = new BrowserWindow()
   await gogLoginWindow.loadURL(gogLoginUrl)
-  let cookies = null
-  const token = await new Promise((res) => {
-    gogLoginWindow.webContents.on('did-redirect-navigation', (event, url) => {
-      if (url.includes('embed') && url.split('=')[2].length > 100) {
-        const auth_token = url.split('=')[2]
-        cookies = gogLoginWindow.webContents.session.cookies.get({})
-        console.log(cookies)
-        return res(auth_token)
-      }
-    })
-  })
-  console.log({ token })
 
-  if (token) {
-    // gogLoginWindow.destroy()
-    axios
-      .get('https://embed.gog.com/userData.json', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          withCredentials: true,
-        },
-      })
-      .then((res) => console.log(res.data))
-      .catch(console.log)
-  }
+  gogLoginWindow.webContents.on('did-redirect-navigation', () => {
+    gogRequest()
+    gogLoginWindow.destroy()
+  })
 })
 
 ipcMain.handle('writeFile', (event, args) => {
