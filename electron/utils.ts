@@ -25,8 +25,10 @@ const heroicFolder = `${home}/.config/heroic/`
 const heroicConfigPath = `${heroicFolder}config.json`
 const heroicGamesConfigPath = `${heroicFolder}GamesConfig/`
 const heroicToolsPath = `${heroicFolder}tools`
-const userInfo = `${legendaryConfigPath}/user.json`
 const heroicInstallPath = `${home}/Games/Heroic`
+const heroicGogGamesPath = `${heroicFolder}GoGLibrary/`
+
+const userInfo = `${legendaryConfigPath}/user.json`
 const legendaryBin = fixPathForAsarUnpack(join(__dirname, '/bin/legendary'))
 const icon = fixPathForAsarUnpack(join(__dirname, '/icon.png'))
 const iconDark = fixPathForAsarUnpack(join(__dirname, '/icon-dark.png'))
@@ -394,6 +396,12 @@ const writeDefaultconfig = async () => {
       return 'done'
     })
   }
+
+  if (!existsSync(heroicGogGamesPath)) {
+    mkdir(heroicGogGamesPath, () => {
+      return 'done'
+    })
+  }
 }
 
 const writeGameconfig = async (game: string) => {
@@ -511,6 +519,7 @@ export {
   isLoggedIn,
   launchGame,
   getLatestDxvk,
+  heroicGogGamesPath,
   discordLink,
   writeDefaultconfig,
   writeGameconfig,

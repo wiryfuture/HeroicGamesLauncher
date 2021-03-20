@@ -11,7 +11,7 @@ import {
 } from 'electron'
 
 import isDev from 'electron-is-dev'
-import { gogRequest } from 'gog_utils/requests'
+import { gogRequest } from './gog_utils/requests'
 import {
   existsSync,
   mkdirSync,

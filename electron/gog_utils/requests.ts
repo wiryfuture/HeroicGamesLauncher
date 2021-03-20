@@ -1,6 +1,6 @@
 import { net } from 'electron'
-import { writeFile, existsSync, readFileSync } from 'graceful-fs'
-import { heroicFolder, heroicGamesConfigPath } from '../utils'
+import { writeFileSync, existsSync, readFileSync, writeFile } from 'graceful-fs'
+import { heroicFolder, heroicGogGamesPath } from '../utils'
 
 export function gogRequest() {
   const gogUser = `${heroicFolder}/gog_user.json`
@@ -19,11 +19,12 @@ export function gogRequest() {
     request.on('response', (response) => {
       response.on('data', (chunk) => {
         const body = JSON.parse(`{"games": ${chunk}}`)
-        console.log(`BODY: `, body)
-        return writeFile(file, JSON.stringify(body, null, 2), () => 'done')
+        return writeFileSync(file, JSON.stringify(body, null, 2))
       })
       response.on('end', () => {
-        gogGetGamesInfo()
+        if (file === gogGameList) {
+          gogGetGamesInfo()
+        }
       })
     })
     request.end()
@@ -41,17 +42,45 @@ function gogGetGamesInfo() {
   )
 
   gameList.games.forEach((id) => {
-    const file = `${heroicGamesConfigPath}/gog-${id}.json`
+    const file = `${heroicGogGamesPath}/${id}.json`
+    if (existsSync(file)) {
+      return
+    }
     const request = net.request({
       useSessionCookies: true,
       url: `https://www.gog.com/account/gameDetails/${id}.json`,
     })
 
     request.on('response', (response) => {
-      response.on('data', (chunk) => {
-        const body = JSON.parse(`${chunk}`)
-        return writeFile(file, JSON.stringify(body, null, 2), () => 'done')
+      response.on('end', () => {
+        console.log('finishing getting data')
       })
+      setTimeout(() => {
+        response.on('data', (chunk) => {
+          try {
+            const game = JSON.parse(`${chunk}`, (key, value) => {
+              switch (key) {
+                case 'changelog':
+                  return null
+                case 'manualUrl':
+                  return `https://www.gog.com${value}`
+                case 'backgroundImage':
+                  return `https:${value}_prof_game_200x120.jpg`
+                default:
+                  return value
+              }
+            })
+            writeFile(
+              file,
+              JSON.stringify({ id, ...game }, null, 2),
+              () => 'done'
+            )
+            return console.log('stored info for ', id)
+          } catch (error) {
+            console.log('error parsing id:', id)
+          }
+        })
+      }, 1000)
     })
     request.end()
   })
