@@ -236,7 +236,7 @@ export class GlobalState extends PureComponent<Props> {
     this.setState({ filter, language, layout })
 
     setTimeout(() => {
-      this.checkVersion()
+      // this.checkVersion()
     }, 4500)
 
     await this.refresh()

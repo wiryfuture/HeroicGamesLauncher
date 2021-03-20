@@ -6,7 +6,6 @@ const { ipcRenderer, remote } = window.require('electron')
 const {
   dialog: { showOpenDialog },
 } = remote
-
 interface Props {
   wineVersion: WineProps
   winePrefix: string
@@ -29,7 +28,7 @@ export default function Tools({ wineVersion, winePrefix }: Props) {
       title: t('box.runexe.title'),
       buttonLabel: t('box.select'),
       properties: ['openFile'],
-      filters: ['exe', 'msi'],
+      filters: [{ name: 'binaries', extensions: ['exe', 'msi'] }],
     })
     if (filePaths[0]) {
       exe = filePaths[0]
