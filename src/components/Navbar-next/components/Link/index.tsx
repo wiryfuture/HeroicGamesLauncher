@@ -1,7 +1,7 @@
 import './index.sass'
 import {ReactComponent as Kofi} from 'src/assets/kofi.svg'
+//import  { default as KofiFake } from '@material-ui/icons/LocalCafeOutlined'
 import { NavLink } from 'react-router-dom'
-import { SvgIcon } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircleOutlined'
 import Apps from '@material-ui/icons/Apps'
 import CloudDownload from '@material-ui/icons/CloudDownload'
@@ -10,9 +10,9 @@ import Error from '@material-ui/icons/Error'
 import React from 'react'
 import Settings from '@material-ui/icons/SettingsOutlined'
 import SportsEsports from '@material-ui/icons/SportsEsportsOutlined'
+import SvgIcon from '@material-ui/core/SvgIcon'
 import styled from 'styled-components'
 
-//const KofiWrapper = <SvgIcon> <Kofi/> </SvgIcon>
 // Styling for NavLink (from react router which compiles to <a>(s))
 const StyledNavLink = styled(NavLink)`
   width: 100%;
