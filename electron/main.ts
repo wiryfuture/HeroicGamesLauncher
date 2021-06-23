@@ -93,7 +93,7 @@ function createWindow(): BrowserWindow {
         console.log('An error occurred: ', err)
       })
     })
-    mainWindow.loadURL('http://localhost:3000')
+    mainWindow.loadURL('http://localhost:3000/library')
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
 

@@ -1,0 +1,76 @@
+.SearchBar {
+  width: 100%;
+  height: clamp(40px, 6vh, 50px);
+  border-radius: 10px;
+  background-color: var(--searchbar-background);
+}
+
+.SearchBarFlex {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding-inline: clamp(10px, 0.95vw ,18px);
+  padding-block-start: clamp(8px, 1.25vh ,12px);
+  padding-block-end: 10px;
+}
+
+.SearchBarFlex label {
+  display: flex;
+  flex-direction: row;
+  color: var(--searchbar-icon);
+  height: 100%;
+  order: 1;
+}
+
+.SearchBarFlex:active .SearchIcon {
+  display: none;  
+}
+.SearchBarFlex:focus-within .SearchIcon {
+  display: none;
+}
+
+.SearchBarFlex:hover .SearchIcon {
+  color: var(--secondary-hover);
+}
+
+.SearchBarFlex input {
+  order: 2;
+}
+.SearchBarFlex:focus-within input {
+  color: var(--secondary);
+}
+.SearchBarFlex:hover input {
+  color: var(--secondary-hover);
+}
+
+.SearchBarFlex .SearchCloseIcon {
+  order: 3;
+}
+.SearchBarFlex .SearchCloseIcon:hover {
+  color: var(--danger-hover)
+}
+
+.SearchIcon {
+  margin-block-end: auto;
+  margin-inline-end: clamp(10px, 1.8vh, 20px);
+  font-size: clamp(24px, 1.75rem, 28px);
+}
+
+.SearchInput {
+  height: clamp(20px, 2em, 26px);
+  width: 100%;
+  background-color: transparent;
+  color: var(--searchbar-text);
+  font-size: clamp(16px, 1em, 30px);
+  border-style:none;
+  outline: none;
+}
+
+.SearchInputFlex {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+

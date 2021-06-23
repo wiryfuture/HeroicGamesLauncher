@@ -2,7 +2,14 @@ html {
   --background: #424546;
   --background-transparent: rgba(66, 69, 70, 0.9);
   --background-secondary: #323035;
-  --searchbar-background: rgba(26, 27, 28, 0.5);
+
+  --searchbar-background: #1D1F1F;
+  --searchbar-icon: #DADADA;
+  --searchbar-text: #5A5E5F;
+
+  --navbar-background: #323232;
+  --navbar-shadow: #161616;
+
   --primary: #07c5ef;
   --secondary: #ffa800;
   --tertiary: #252121;
@@ -16,8 +23,10 @@ html {
   --danger-hover: #bd0a0a;
 
   --text-primary: #eae8e5;
-  --text-secondary: #c1c4c3;
+  --text-secondary: #c1c3c3;
   overflow-y: overlay;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -29,6 +38,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1d1f1f;
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -39,4 +50,9 @@ a {
 code {
   font-family: Cabin, source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
 }
