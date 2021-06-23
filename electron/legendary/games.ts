@@ -1,6 +1,7 @@
 import {
   existsSync,
-  mkdirSync
+  mkdirSync,
+  writeFile
 } from 'graceful-fs'
 import axios from 'axios';
 
@@ -11,6 +12,7 @@ import { GameConfig } from '../game_config';
 import { GlobalConfig } from '../config';
 import { LegendaryLibrary } from './library'
 import { LegendaryUser } from './user';
+import { app } from 'electron';
 import {
   errorHandler,
   execAsync,
@@ -24,6 +26,7 @@ import {
   legendaryBin
 } from '../constants'
 import { spawn } from 'child_process';
+import makeClient from 'discord-rich-presence-typescript';
 
 class LegendaryGame extends Game {
   public appName: string
@@ -168,6 +171,7 @@ class LegendaryGame extends Game {
       })
       .catch(console.log)
     this.state.status = 'done'
+    this.addDesktopShortcut()
     return newInstallPath
   }
 
@@ -199,6 +203,51 @@ class LegendaryGame extends Game {
   }
 
   /**
+   * Adds a desktop shortcut to $HOME/Desktop and to /usr/share/applications
+   * so that the game can be opened from the start menu and the desktop folder.
+   * Both can be disabled with enableDesktopShortcutsOnDesktop and enableDesktopShortcutsOnStartMenu
+   * @async
+   * @public
+   */
+  public async addDesktopShortcut() {
+    const gameInfo = await this.getGameInfo()
+    const desktopFolder = app.getPath('desktop')
+    let shortcut;
+
+    switch(process.platform) {
+    case 'linux': {
+      shortcut = `[Desktop Entry]
+Name=${gameInfo.title}
+Exec=xdg-open heroic://launch/${gameInfo.app_name}
+Terminal=false
+Type=Application
+Icon=${app.getAppPath()}/app.asar.unpacked/build/icon.png
+Categories=Game;
+`
+      break; }
+    default:
+      console.error("Shortcuts haven't been implemented in the current platform.")
+      return
+    }
+    const enabledInDesktop = GlobalConfig.get().config.enableDesktopShortcutsOnDesktop
+    const enabledInStartMenu = GlobalConfig.get().config.enableDesktopShortcutsOnStartMenu
+
+    if (enabledInDesktop || enabledInDesktop === undefined) {
+      writeFile(desktopFolder, shortcut, (err) => {
+        if(err) console.error(err)
+        console.log("Couldn't save shortcut to " + desktopFolder)
+      })
+    }
+    if (enabledInStartMenu || enabledInStartMenu === undefined) {
+      writeFile('/usr/share/applications', shortcut, (err) => {
+        if(err) console.error(err)
+        console.log("Couldn't save shortcut to /usr/share/applications")
+      })
+    }
+
+  }
+
+  /**
    * Install game.
    * Does NOT check for online connectivity.
    *
@@ -214,13 +263,13 @@ class LegendaryGame extends Game {
     // const selectiveDownloads = sdl ? `echo ${sdl.join(' ')}` : `echo 'hd_textures'`
     const logPath = `"${heroicGamesConfigPath}${this.appName}.log"`
     const writeLog = isWindows ? `2>&1 > ${logPath}` : `|& tee ${logPath}`
-
     const command = `${legendaryBin} install ${this.appName} --base-path ${path} ${workers} -y ${writeLog}`
     console.log(`Installing ${this.appName} with:`, command)
     try {
       LegendaryLibrary.get().installState(this.appName, true)
       return await execAsync(command, execOptions).then((v) => {
         this.state.status = 'done'
+        this.addDesktopShortcut()
         return v
       })
     } catch (error) {
@@ -314,10 +363,51 @@ class LegendaryGame extends Game {
       autoInstallDxvk
     } = await this.getSettings()
 
+
+    const DiscordRPC = makeClient('852942976564723722')
+
+    const { discordRPC } = (await GlobalConfig.get().getSettings())
+    if (discordRPC) {
+      // Show DiscordRPC
+      // This seems to run when a game is updated, even though the game doesn't start after updating.
+      const gameInfo = await this.getGameInfo()
+      let os: string
+
+      switch (process.platform) {
+      case 'linux':
+        os = 'Linux'
+        break
+      case 'win32':
+        os = 'Windows'
+        break
+      case 'darwin':
+        os = 'MacOS'
+        break
+      default:
+        os = 'Unknown OS'
+        break
+      }
+
+      DiscordRPC.updatePresence({
+        details: gameInfo.title,
+        instance: true,
+        largeImageKey: 'icon',
+        large_text: gameInfo.title,
+        startTimestamp: Date.now(),
+        state: 'via Heroic on ' + os
+      })
+    }
+
     if (isWindows) {
       const command = `${legendaryBin} launch ${this.appName} ${launcherArgs}`
       console.log('\n Launch Command:', command)
-      return await execAsync(command)
+      const v = await execAsync(command)
+
+      console.log('Stopping Discord Rich Presence if running...')
+      DiscordRPC.disconnect()
+      console.log('Stopped Discord Rich Presence.')
+
+      return v
     }
 
     const fixedWinePrefix = winePrefix.replace('~', home)
@@ -380,11 +470,16 @@ class LegendaryGame extends Game {
 
     const command = `${envVars} ${runWithGameMode} ${legendaryBin} launch ${this.appName}  ${wineCommand} ${prefix} ${launcherArgs}`
     console.log('\n Launch Command:', command)
-
-    return await execAsync(command).then((v) => {
+    const v = await execAsync(command).then((v) => {
       this.state.status = 'playing'
       return v
     })
+
+    console.log('Stopping Discord Rich Presence if running...')
+    DiscordRPC.disconnect()
+    console.log('Stopped Discord Rich Presence.')
+
+    return v
   }
 
   public stop() {
@@ -392,8 +487,18 @@ class LegendaryGame extends Game {
     // not a perfect solution but it's the only choice for now
 
     // @adityaruplaha: this is kinda arbitary and I don't understand it.
-    const pattern = process.platform === 'darwin' ? 'legendary' : this.appName
+    const pattern = process.platform === 'linux' ? this.appName : 'legendary'
     console.log('killing', pattern)
+
+    if (process.platform === 'win32'){
+      try {
+        execAsync(`Stop-Process -name  ${pattern}`, execOptions)
+        return console.log(`${pattern} killed`);
+      } catch (error) {
+        return console.log(`not possible to kill ${pattern}`, error);
+      }
+    }
+
     const child =  spawn('pkill', ['-f', pattern])
     child.on('exit', () => {
       return console.log(`${pattern} killed`);

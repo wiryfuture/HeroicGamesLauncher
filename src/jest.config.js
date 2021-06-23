@@ -1,20 +1,12 @@
+
 module.exports = {
-  collectCoverageFrom: [
-    '**/*.{js,jsx,ts,tsx}',
-    '!**/*.config.js'
-  ],
+  displayName: 'Frontend',
 
-  coverageDirectory: '<rootDir>/coverage',
-
-  coveragePathIgnorePatterns: [
-    '<rootDir>/node_modules',
-    '<rootDir>/public',
-    '<rootDir>/dist',
-    '<rootDir>/build',
-    '<rootDir>/coverage'
-  ],
-
-  coverageReporters: ['text', 'html'],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.json'
+    }
+  },
 
   moduleDirectories: [
     'node_modules',
@@ -32,9 +24,11 @@ module.exports = {
 
   resetMocks: true,
 
+  rootDir: '..',
+
   // The root of your source code, typically /src
   // `<rootDir>` is a token Jest substitutes
-  roots: ['<rootDir>'],
+  roots: ['<rootDir>/src'],
 
   setupFilesAfterEnv: ['<rootDir>/src/test_helpers/setupTests.ts'],
 

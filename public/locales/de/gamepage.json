@@ -84,6 +84,7 @@
         "updating": "Spiel wird aktualisiert"
     },
     "submenu": {
+        "addShortcut": "Verknüpfung hinzufügen",
         "change": "Installationspfad ändern",
         "log": "Neuester Log",
         "move": "Spiel verschieben",

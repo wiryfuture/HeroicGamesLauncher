@@ -31,6 +31,11 @@
             "python": "Heroic requires Python 3.8 or newer to work."
         },
         "no": "NON",
+        "protocol": {
+            "install": {
+                "not_installed": "Is Not Installed, do you wish to Install it?"
+            }
+        },
         "quit": {
             "message": "D'autres opérations sont en cours, êtes-vous sûr(e) ?",
             "title": "Quitter"
@@ -101,8 +106,6 @@
             "finished": "Installation Terminée"
         },
         "moved": "Déplacement Terminé",
-        "refreshed": "bibliothèque mise à jour",
-        "refreshing": "Actualisation",
         "uninstalled": "Désinstallé",
         "update": {
             "canceled": "Mise à jour Annulée",
@@ -131,6 +134,8 @@
     "Return": "Retour",
     "search": "Entrez le nom du jeu ici...",
     "setting": {
+        "adddesktopshortcuts": "Add desktop shortcuts automatically",
+        "addgamestostartmenu": "Add games to start menu automatically",
         "audiofix": "Fixer l'Audio (Latence Pulse Audio)",
         "autodxvk": "Installation/Mise à jour automatique du préfix DXVK",
         "autosync": "Sauvegardes Autosync",

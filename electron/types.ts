@@ -10,20 +10,23 @@ export interface AppSettings {
   customWinePaths: string[]
   darkTrayIcon: boolean
   defaultInstallPath: string
+  discordRPC: boolean
   egsLinkedPath: string
-  exitToTray: boolean
-  language: string
-  launcherArgs: string
-  maxWorkers: number
-  nvidiaPrime: boolean
-  offlineMode: boolean
-  otherOptions: string
-  savesPath: string
-  showFps: boolean
-  showMangohud: boolean
-  useGameMode: boolean
-  userInfo: UserInfo
-  winePrefix: string
+  enableDesktopShortcutsOnDesktop: boolean,
+  enableDesktopShortcutsOnStartMenu: boolean,
+  exitToTray: boolean,
+  language: string,
+  launcherArgs: string,
+  maxWorkers: number,
+  nvidiaPrime: boolean,
+  offlineMode: boolean,
+  otherOptions: string,
+  savesPath: string,
+  showFps: boolean,
+  showMangohud: boolean,
+  useGameMode: boolean,
+  userInfo: UserInfo,
+  winePrefix: string,
   wineVersion: WineInstallation
 }
 

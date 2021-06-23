@@ -16,6 +16,7 @@ import {
 } from 'os'
 import {
   existsSync,
+  mkdirSync,
   rmdirSync,
   unlinkSync,
   writeFile
@@ -55,13 +56,22 @@ import {
   weblateUrl
 } from './constants'
 import { handleProtocol } from './protocol'
-
+import { listenStdout } from './logger'
 const { showErrorBox, showMessageBox,showOpenDialog } = dialog
 const isWindows = platform() === 'win32'
 
 let mainWindow: BrowserWindow = null
 
 function createWindow(): BrowserWindow {
+  listenStdout().then((arr) => {
+    const str = arr.join('\n')
+    const date = new Date().toDateString()
+    const path = `${app.getPath('crashDumps')}/${date}.txt`
+    console.log('Saving log file to ' + path)
+    writeFile(path, str, {}, (err) => {
+      throw err
+    })
+  })
   // Create the browser window.
   mainWindow = new BrowserWindow({
     height: isDev ? 1200 : 720,
@@ -498,6 +508,11 @@ ipcMain.handle('openMessageBox', async (e, args) => {
 })
 
 
+ipcMain.handle('showErrorBox', async (e, args: [title: string, message: string]) => {
+  const [title, content] = args
+  return  showErrorBox(title, content)
+})
+
 ipcMain.handle('install', async (event, args) => {
   const { appName: game, path } = args
   if (!(await isOnline())) {
@@ -603,7 +618,15 @@ ipcMain.handle(
 )
 
 ipcMain.handle('egsSync', async (event, args) => {
-  const linkArgs = `--enable-sync --egl-wine-prefix ${args}`
+  const egl_manifestPath = 'C:/ProgramData/Epic/EpicGamesLauncher/Data/Manifests'
+
+  if (isWindows){
+    if (!existsSync(egl_manifestPath)){
+      mkdirSync(egl_manifestPath)
+    }
+  }
+
+  const linkArgs = isWindows ? `--enable-sync` : `--enable-sync --egl-wine-prefix ${args}`
   const unlinkArgs = `--unlink`
   const isLink = args !== 'unlink'
   const command = isLink ? linkArgs : unlinkArgs
@@ -619,6 +642,12 @@ ipcMain.handle('egsSync', async (event, args) => {
   }
 })
 
+ipcMain.on('addShortcut', async(event, args) => {
+  const [appName] = args
+  const game = Game.get(appName)
+  game.addDesktopShortcut()
+})
+
 ipcMain.handle('syncSaves', async (event, args) => {
   const [arg = '', path, appName] = args
   if (!(await isOnline())) {
@@ -629,4 +658,10 @@ ipcMain.handle('syncSaves', async (event, args) => {
   const { stderr, stdout } = await Game.get(appName).syncSaves(arg, path)
   console.log(`${stdout} - ${stderr}`)
   return `\n ${stdout} - ${stderr}`
+})
+
+ipcMain.on('addShortcut', async(event, args) => {
+  const [appName] = args
+  const game = Game.get(appName)
+  game.addDesktopShortcut()
 })
